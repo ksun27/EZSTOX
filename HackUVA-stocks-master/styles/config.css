@@ -1,0 +1,94 @@
+.navbar {
+  position: relative;
+  display: flex;
+  top: 0;
+  padding: 50px;
+  justify-content: space-between; }
+  .navbar .navbar-brand {
+    color: #DCDCDD;
+    text-decoration: none !important;
+    font-size: 2em;
+    letter-spacing: 5px; }
+  .navbar #menuIcon {
+    display: none; }
+    @media only screen and (max-width: 850px) {
+      .navbar #menuIcon {
+        font-size: 1.5em;
+        display: inline-block;
+        line-height: 40px;
+        text-decoration: none !important;
+        color: #DCDCDD !important; } }
+  @media only screen and (max-width: 850px) {
+    .navbar #myNavbar {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0; } }
+  .navbar #myNavbar ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none; }
+    @media only screen and (max-width: 850px) {
+      .navbar #myNavbar ul {
+        height: 100vh;
+        width: 100vw;
+        background: #001021;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 10000;
+        text-align: center; } }
+    .navbar #myNavbar ul li {
+      font-size: 1.5em;
+      margin: auto 20px;
+      line-height: 40px; }
+      @media only screen and (max-width: 850px) {
+        .navbar #myNavbar ul li {
+          line-height: 20px;
+          margin: 10px; } }
+      .navbar #myNavbar ul li a {
+        text-decoration: none;
+        color: #DCDCDD; }
+        .navbar #myNavbar ul li a.active {
+          color: #11B5E4 !important; }
+
+#container {
+  text-align: center;
+  margin: 0 10vw; }
+  #container h1 {
+    color: #DCDCDD;
+    font-size: 2em;
+    margin: 20px 0; }
+  #container p {
+    font-size: 1.3em;
+    margin: 20px 0; }
+  #container #sliders {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px; }
+    #container #sliders .slider-cont {
+      display: flex;
+      justify-content: space-between;
+      width: 30vw;
+      flex-wrap: wrap;
+      margin: 20px;
+      background: #001226;
+      padding: 0 20px;
+      box-shadow: 0px 0px 20px rgba(220, 220, 221, 0.1); }
+      @media only screen and (max-width: 850px) {
+        #container #sliders .slider-cont {
+          width: 100%; } }
+      #container #sliders .slider-cont h3 {
+        text-align: left;
+        display: inline-block;
+        color: #DCDCDD;
+        font-size: 1.5em;
+        margin: 20px 0;
+        width: 140px;
+        margin-right: 10px; }
+      #container #sliders .slider-cont p {
+        margin-left: 10px;
+        font-size: 1.3em;
+        width: 50px; }
+
+/*# sourceMappingURL=config.css.map */

@@ -1,0 +1,74 @@
+@import "colors";
+@import "mixins";
+
+.navbar{
+  position: relative;
+  display: flex;
+  top: 0;
+  padding: 50px;
+  justify-content: space-between;
+
+  .navbar-brand{
+    color: $header;
+    text-decoration: none !important;
+    font-size: 2em;
+    letter-spacing: 5px;
+  }
+  #menuIcon{
+    display: none;
+
+    @include respond-to(mobile){
+      font-size: 1.5em;
+      display: inline-block;
+      line-height: 40px;
+      text-decoration: none !important;
+      color: $header !important;
+    }
+  }
+  #myNavbar{
+    @include respond-to(mobile){
+      display: none;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    ul{
+      display: flex;
+      justify-content: flex-end;
+      list-style: none;
+
+      @include respond-to(mobile){
+        height: 100vh;
+        width: 100vw;
+        background: $background;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 10000;
+        text-align: center;
+      }
+
+      li{
+        font-size: 1.5em;
+        margin: auto 20px;
+        line-height: 40px;
+
+        @include respond-to(mobile){
+          line-height: 20px;
+          margin: 10px;
+        }
+
+        a{
+          text-decoration: none;
+          color: $header;
+
+          &.active{
+            color: $primary !important;
+          }
+        }
+
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Overview</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <a class="navbar-brand" href="index.html">ToTheMoon</a>
+  <a href="javascript:void(0);" id="menuIcon" onclick="openMenu()">&#9776;</a>
+  <div id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="main.html" >Overview</a></li>
+      <li><a href="config.html">Config</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="container">
+  <div id="portfolio-graph">
+    <h2>AAPL</h2>
+    <div id="mainframe"></div>
+  </div>
+  <div id="portfolio">
+    <div id="portfolio-overview">
+      <h3>Price</h3>
+      <h1 id="equity">$700</h1>
+    </div>
+    <h2>Info</h2>
+    <div id="portfolio-stocks">
+      <div class="stock">
+        <h4>High</h4>
+        <p class="positive">$190</p>
+      </div>
+      <div class="stock">
+        <h4>Low</h4>
+        <p class="negative">$190</p>
+      </div>
+      <div class="stock">
+        <h4>Volume</h4>
+        <p>10000</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+    function openMenu(){
+      $("#myNavbar").css("display","flex");
+    }
+
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  var ticker = getParameterByName('ticker');
+  if(ticker == null || ticker == ""){
+    window.location = "main.html";
+  }
+  function callUpdate(){
+      $.ajax({
+			url: "http://127.0.0.1:5000/chart/GERN",
+			type: "GET",
+			success: function(res) {
+                updateChart(res)
+            }
+        })
+    }
+  function updateChart(res){
+Plotly.d3.json(res, function(fig){
+    var jsonset = fig.data
+    x1 = []
+    y1 = []
+    for(var i=0;i<jsonset.length;i++){
+        x1.push(jsonset[i]['date'])
+        y1.push(jsonset[i]['close'])
+    }
+        var trace1 = {
+            type: "scatter",
+            mode: "lines",
+            name: "AAPL.High",
+            x: x1,
+            y: y1,
+            line: {color: '#17BECF'}
+        }
+
+        var data = [trace1];
+
+        var layout = {
+            xaxis: {
+                range: ['2016-07-01', '2018-12-31'],
+                type: 'date'
+            },
+            yaxis: {
+                autorange: true,
+                range: [86.8700008333, 138.870004167],
+                type: 'linear'
+            }
+        };
+        Plotly.newPlot('mainframe', data, layout);
+    })
+    }
+    setInterval(callUpdate, 2000)
+    </script>
+</body>
+</html>

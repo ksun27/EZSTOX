@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Overview</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <a class="navbar-brand" href="index.html">EZSTOX</a>
+  <a href="javascript:void(0);" id="menuIcon" onclick="openMenu()">&#9776;</a>
+  <div id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="main.html" class="active">Overview</a></li>
+      <li><a href="config.html">Config</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="container">
+  <div id="portfolio-graph">
+    <h2>Portfolio</h2>
+    <div id="mainframe"></div>
+  </div>
+  <div id="portfolio">
+    <div id="portfolio-overview">
+      <h3>Total Value</h3>
+      <h1 id="equity">$700</h1>
+    </div>
+    <h2>Stocks</h2>
+    <div id="portfolio-stocks">
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+	setInterval(updatePortfolio, 1000);
+	function updatePortfolio() {
+		$.ajax({
+			url: "http://127.0.0.1:5000/portfolio",
+			type: "GET",
+			success: function(res) {
+				$("#portfolio-stocks").html("");
+				res = JSON.parse(res);
+				$("#equity").text("$"+res["value"]);
+				for(var key in res["securities"]) {
+					let val = res["securities"][key];
+					$(`<div class="stock"><h4>${key}</h4><p class="positive">${val} shares</p></div>`)
+						.appendTo("#portfolio-stocks");
+				}
+			}
+		});
+	}
+
+    function openMenu(){
+      $("#myNavbar").css("display","flex");
+    }
+
+    Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows){
+        function unpack(rows, key) {
+            return rows.map(function(row) { return row[key]; });
+        }
+        var trace1 = {
+            type: "scatter",
+            mode: "lines",
+            name: "AAPL.High",
+            x: unpack(rows, 'Date'),
+            y: unpack(rows, 'AAPL.High'),
+            line: {color: '#17BECF'}
+        }
+
+        var data = [trace1];
+
+        var layout = {
+            xaxis: {
+                range: ['2016-07-01', '2016-12-31'],
+                type: 'date'
+            },
+            yaxis: {
+                autorange: true,
+                range: [86.8700008333, 138.870004167],
+                type: 'linear'
+            }
+        };
+        Plotly.newPlot('mainframe', data, layout);
+    })
+    </script>
+</body>
+</html>

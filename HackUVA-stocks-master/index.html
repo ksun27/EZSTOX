@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viweport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EZSTOX</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <!--Font is Montserrat by Julieta Ulanovsky-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+  </head>
+  <body>
+    <div class="welcome-section content-hidden">
+      <div class="content-wrap">
+        <ul class="fly-in">
+          <li>E</li>
+          <li>Z</li>
+          <li>S</li>
+          <li>T</li>
+          <li>O</li>
+          <li>X</li>
+        </ul>
+        <button class="startup" onclick="startButton()">Start</button>
+      </div>
+    </div>
+    <script type="text/javascript">
+
+      $(function() {
+        var welcomeSection = $('.welcome-section'),
+            enterButton = welcomeSection.find('.startup');
+
+            setTimeout(function() {
+              welcomeSection.removeClass('content-hidden');
+            },500);
+      });
+
+      function startButton(){
+        $('.welcome-section').addClass('content-hidden').fadeOut();
+        setTimeout(function() {
+          window.location.href = "main.html";
+        },500);
+      }
+
+      </script>
+
+  </body>
+</html>

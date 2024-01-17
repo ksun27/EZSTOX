@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Overview</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/config.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style type="text/css">
+      .hoverable {
+           background: #FFFFFF url(path/to/background.png) top left no-repeat;
+           height: 32px; /* height and width match your background.png dimensions */
+           width: 64px;
+       }
+      .hoverable:hover {
+           background-image: url(path/to/background-hover.png);
+       }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <a class="navbar-brand" href="index.html">EZSTOX</a>
+  <a href="javascript:void(0);" id="menuIcon" onclick="openMenu()">&#9776;</a>
+  <div id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="main.html" >Overview</a></li>
+      <li><a href="config.html" class="active">Config</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="container">
+  <h1>Config Screener</h1>
+  <p>Drag to alter the weights that determine how heavily optimizers are evaluated.</p>
+  <div id="sliders">
+    <div class="slider-cont">
+      <h3>RSI</h3>
+      <input type="range" min="0" max="100" value="50" class="slider" id="myRange1">
+      <p><span id="demo1"></span>%</p>
+    </div>
+    <div class="slider-cont">
+      <h3>CCI</h3>
+      <input type="range" min="0" max="100" value="50" class="slider" id="myRange2">
+      <p><span id="demo2"></span>%</p>
+    </div>
+    <div class="slider-cont">
+      <h3>MACD</h3>
+      <input type="range" min="0" max="100" value="50" class="slider" id="myRange3">
+      <p><span id="demo3"></span>%</p>
+    </div>
+    <div class="slider-cont">
+      <h3>Accum/Dist</h3>
+      <input type="range" min="0" max="100" value="50" class="slider" id="myRange4">
+      <p><span id="demo4"></span>%</p>
+    </div>
+    <div class="slider-cont">
+      <h3>Volume</h3>
+      <input type="range" min="0" max="100" value="50" class="slider" id="myRange5">
+      <p><span id="demo5"></span>%</p>
+    </div>
+    <div class="slider-cont">
+      <h3>News</h3>
+      <input type="range" min="0" max="100" value="50" class="slider" id="myRange6">
+      <p><span id="demo6"></span>%</p>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+    function openMenu(){
+      $("#myNavbar").css("display","flex");
+    }
+var slider1 = document.getElementById("myRange1");
+var output1 = document.getElementById("demo1");
+output1.innerHTML = slider1.value;
+
+slider1.oninput = function() {
+  output1.innerHTML = this.value;
+}
+var slider2 = document.getElementById("myRange2");
+var output2 = document.getElementById("demo2");
+output2.innerHTML = slider2.value;
+
+slider2.oninput = function() {
+  output2.innerHTML = this.value;
+}
+var slider3 = document.getElementById("myRange3");
+var output3 = document.getElementById("demo3");
+output3.innerHTML = slider3.value;
+
+slider3.oninput = function() {
+  output3.innerHTML = this.value;
+}
+var slider4 = document.getElementById("myRange4");
+var output4 = document.getElementById("demo4");
+output4.innerHTML = slider4.value;
+
+slider4.oninput = function() {
+  output4.innerHTML = this.value;
+}
+var slider5 = document.getElementById("myRange5");
+var output5 = document.getElementById("demo5");
+output5.innerHTML = slider5.value;
+
+slider5.oninput = function() {
+  output5.innerHTML = this.value;
+}
+var slider6 = document.getElementById("myRange6");
+var output6 = document.getElementById("demo6");
+output6.innerHTML = slider6.value;
+
+slider6.oninput = function() {
+  output6.innerHTML = this.value;
+}
+</script>
+<form>
+      <div style="text-align: center;">
+        <button type="submit" class="hoverable"></button>
+      </div>
+
+    </form>
+</body>
+</html>

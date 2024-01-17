@@ -1,0 +1,68 @@
+@import "colors";
+@import "mixins";
+@import "menu";
+
+
+#container{
+  display: flex;
+  justify-content: center;
+  margin: 0 5vw;
+  flex-wrap: wrap;
+
+  h2{
+    display: inline-block;
+    color: $header;
+    font-size: 1.8em;
+    margin: 20px 0;
+  }
+  #portfolio-graph{
+    margin: 0 50px;
+
+    #mainframe{
+      width: 50vw;
+    }
+  }
+  #portfolio{
+    margin: 0 50px;
+    #portfolio-overview{
+      margin: 50px 0;
+      h3{
+        font-size: 1.3em;
+      }
+      h1{
+        color: $header;
+        font-size: 3em;
+        font-weight: 700;
+      }
+    }
+    #portfolio-stocks{
+      .stock{
+        display: flex;
+        justify-content: space-between;
+        width: 200px;
+        padding: 15px 0;
+
+        h4{
+          color: $header;
+          font-size: 1.3em;
+        }
+        p{
+          font-size: 1.3em;
+          &.positive{
+            color: green;
+          }
+          &.negative{
+            color: red;
+          }
+        }
+
+        border-bottom: 1px solid $other;
+
+        &:nth-last-child(1){
+          border: none;
+        }
+      }
+
+    }
+  }
+}
